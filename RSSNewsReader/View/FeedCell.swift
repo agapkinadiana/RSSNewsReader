@@ -14,8 +14,8 @@ class FeedCell: UITableViewCell {
     var feed: Feed? {
         didSet {
             titleLabel.text = feed?.title
-            descriptionLabel.text = feed?.description
-            dateLabel.text = feed?.pubDate
+            descriptionLabel.text = feed?.description.trim().removeHtmlTags()
+            dateLabel.text = feed?.pubDate.formatDate()
         }
     }
     

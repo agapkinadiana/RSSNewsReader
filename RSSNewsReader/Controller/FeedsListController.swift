@@ -16,6 +16,12 @@ class FeedsListController: UIViewController {
     
     private let tableView = UITableView()
     private var feeds = [Feed]()
+    
+    private let newsRefreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
+        return refreshControl
+    }()
 
     // MARK: - Lifecycle
     
@@ -32,7 +38,6 @@ class FeedsListController: UIViewController {
             case .failure(let err):
                 print("DEBUG: Error fetching news: \(err)")
             case .success(let feeds):
-                print("DEBUG: Fetched news: \(feeds)")
                 self.feeds = feeds
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
@@ -49,9 +54,12 @@ class FeedsListController: UIViewController {
     }
     
     func configureUI() {
-        view.backgroundColor = .red
-        
+        configureNavigationBar()
         configureTableView()
+    }
+    
+    func configureNavigationBar() {
+        navigationController?.navigationBar.topItem?.title = "News"
     }
     
     func configureTableView() {
@@ -59,15 +67,21 @@ class FeedsListController: UIViewController {
         tableView.dataSource = self
         
         tableView.register(FeedCell.self, forCellReuseIdentifier: reuseIdentifier)
-//        tableView.estimatedRowHeight = 1
-//        tableView.rowHeight = UITableView.automaticDimension
-        
+        tableView.refreshControl = newsRefreshControl
+        tableView.showsVerticalScrollIndicator = false
         tableView.tableFooterView = UIView()
         
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+    }
+    
+    // MARK: - Selectors
+
+    @objc private func refresh(sender: UIRefreshControl) {
+        fetchFeeds()
+        sender.endRefreshing()
     }
 }
 
@@ -85,6 +99,4 @@ extension FeedsListController: UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
-    
-    
 }
