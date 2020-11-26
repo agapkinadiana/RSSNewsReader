@@ -9,23 +9,25 @@
 /* Begin PBXBuildFile section */
 		3041770C256FEAF400089A2B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3041770B256FEAF400089A2B /* AppDelegate.swift */; };
 		3041770E256FEAF400089A2B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3041770D256FEAF400089A2B /* SceneDelegate.swift */; };
-		30417710256FEAF400089A2B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3041770F256FEAF400089A2B /* ViewController.swift */; };
-		30417713256FEAF400089A2B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30417711256FEAF400089A2B /* Main.storyboard */; };
+		30417710256FEAF400089A2B /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3041770F256FEAF400089A2B /* MainTabBarController.swift */; };
 		30417716256FEAF400089A2B /* RSSNewsReader.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 30417714256FEAF400089A2B /* RSSNewsReader.xcdatamodeld */; };
 		30417718256FEAF800089A2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30417717256FEAF800089A2B /* Assets.xcassets */; };
 		3041771B256FEAF800089A2B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30417719256FEAF800089A2B /* LaunchScreen.storyboard */; };
+		304177322570085800089A2B /* NewsListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304177312570085800089A2B /* NewsListController.swift */; };
+		304177352570088100089A2B /* SavedNewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304177342570088100089A2B /* SavedNewsController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		30417708256FEAF400089A2B /* RSSNewsReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSSNewsReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3041770B256FEAF400089A2B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3041770D256FEAF400089A2B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		3041770F256FEAF400089A2B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		30417712256FEAF400089A2B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3041770F256FEAF400089A2B /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		30417715256FEAF400089A2B /* RSSNewsReader.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RSSNewsReader.xcdatamodel; sourceTree = "<group>"; };
 		30417717256FEAF800089A2B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3041771A256FEAF800089A2B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3041771C256FEAF800089A2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		304177312570085800089A2B /* NewsListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListController.swift; sourceTree = "<group>"; };
+		304177342570088100089A2B /* SavedNewsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedNewsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,16 +60,57 @@
 		3041770A256FEAF400089A2B /* RSSNewsReader */ = {
 			isa = PBXGroup;
 			children = (
+				30417726256FFD8900089A2B /* Model */,
+				30417727256FFD9900089A2B /* View */,
+				30417728256FFDA100089A2B /* Controller */,
+				30417729256FFDB400089A2B /* Service */,
+				3041772A256FFDBC00089A2B /* Utils */,
 				3041770B256FEAF400089A2B /* AppDelegate.swift */,
 				3041770D256FEAF400089A2B /* SceneDelegate.swift */,
-				3041770F256FEAF400089A2B /* ViewController.swift */,
-				30417711256FEAF400089A2B /* Main.storyboard */,
 				30417717256FEAF800089A2B /* Assets.xcassets */,
 				30417719256FEAF800089A2B /* LaunchScreen.storyboard */,
 				3041771C256FEAF800089A2B /* Info.plist */,
 				30417714256FEAF400089A2B /* RSSNewsReader.xcdatamodeld */,
 			);
 			path = RSSNewsReader;
+			sourceTree = "<group>";
+		};
+		30417726256FFD8900089A2B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		30417727256FFD9900089A2B /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		30417728256FFDA100089A2B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3041770F256FEAF400089A2B /* MainTabBarController.swift */,
+				304177312570085800089A2B /* NewsListController.swift */,
+				304177342570088100089A2B /* SavedNewsController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		30417729256FFDB400089A2B /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		3041772A256FFDBC00089A2B /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -129,7 +172,6 @@
 			files = (
 				3041771B256FEAF800089A2B /* LaunchScreen.storyboard in Resources */,
 				30417718256FEAF800089A2B /* Assets.xcassets in Resources */,
-				30417713256FEAF400089A2B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,24 +182,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30417710256FEAF400089A2B /* ViewController.swift in Sources */,
+				304177352570088100089A2B /* SavedNewsController.swift in Sources */,
+				30417710256FEAF400089A2B /* MainTabBarController.swift in Sources */,
 				3041770C256FEAF400089A2B /* AppDelegate.swift in Sources */,
 				30417716256FEAF400089A2B /* RSSNewsReader.xcdatamodeld in Sources */,
 				3041770E256FEAF400089A2B /* SceneDelegate.swift in Sources */,
+				304177322570085800089A2B /* NewsListController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		30417711256FEAF400089A2B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				30417712256FEAF400089A2B /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		30417719256FEAF800089A2B /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

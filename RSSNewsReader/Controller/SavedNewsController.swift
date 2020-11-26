@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  SavedNewsController.swift
 //  RSSNewsReader
 //
 //  Created by Diana Agapkina on 26.11.20.
@@ -7,13 +7,12 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class SavedNewsController: UIViewController {
 
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        view.backgroundColor = .yellow
     }
-
-
 }
-
