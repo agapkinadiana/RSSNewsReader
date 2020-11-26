@@ -1,0 +1,24 @@
+PODS:
+  - Alamofire (5.4.0)
+  - SnapKit (5.0.1)
+  - SwiftyXMLParser (5.0.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - SnapKit
+  - SwiftyXMLParser
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - SnapKit
+    - SwiftyXMLParser
+
+SPEC CHECKSUMS:
+  Alamofire: 3b6a534a3df22db367e4dedeeca73d1ddfcf0e2f
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  SwiftyXMLParser: 5ebb8793192f403fa8cc691045143906122a7a75
+
+PODFILE CHECKSUM: 3ac47189931c9d7f76abeb5be7faa48c9db1cf77
+
+COCOAPODS: 1.10.0
