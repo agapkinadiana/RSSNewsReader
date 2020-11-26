@@ -1,0 +1,67 @@
+//
+//  FeedCell.swift
+//  RSSNewsReader
+//
+//  Created by Diana Agapkina on 27.11.20.
+//
+
+import UIKit
+
+class FeedCell: UITableViewCell {
+
+    // MARK: - Properties
+    
+    var feed: Feed? {
+        didSet {
+            titleLabel.text = feed?.title
+            descriptionLabel.text = feed?.description
+            dateLabel.text = feed?.pubDate
+        }
+    }
+    
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.textColor = .darkGray
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    private let descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.textColor = .gray
+        label.numberOfLines = 4
+        return label
+    }()
+    
+    private let dateLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.textColor = .lightGray
+        return label
+    }()
+    
+    // MARK: - Lifecycle
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        selectionStyle = .none
+        
+        let stack = UIStackView(arrangedSubviews: [titleLabel, dateLabel, descriptionLabel])
+        stack.axis = .vertical
+        stack.distribution = .fill
+        stack.spacing = 5
+        
+        addSubview(stack)
+        stack.snp.makeConstraints { make in
+            make.top.bottom.equalToSuperview().inset(3)
+            make.leading.trailing.equalToSuperview().inset(10)
+        }
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}

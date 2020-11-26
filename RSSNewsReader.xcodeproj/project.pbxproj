@@ -16,6 +16,8 @@
 		304177322570085800089A2B /* FeedsListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304177312570085800089A2B /* FeedsListController.swift */; };
 		304177352570088100089A2B /* SavedFeedsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304177342570088100089A2B /* SavedFeedsController.swift */; };
 		30417766257029F500089A2B /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30417765257029F500089A2B /* Feed.swift */; };
+		3041776F2570366800089A2B /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3041776E2570366800089A2B /* Service.swift */; };
+		304177782570521600089A2B /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304177772570521600089A2B /* FeedCell.swift */; };
 		A559E39255BEE25740D81906 /* Pods_RSSNewsReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E269161D972D2A39A1DD396 /* Pods_RSSNewsReader.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +33,8 @@
 		304177312570085800089A2B /* FeedsListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsListController.swift; sourceTree = "<group>"; };
 		304177342570088100089A2B /* SavedFeedsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedFeedsController.swift; sourceTree = "<group>"; };
 		30417765257029F500089A2B /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
+		3041776E2570366800089A2B /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		304177772570521600089A2B /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		6E269161D972D2A39A1DD396 /* Pods_RSSNewsReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RSSNewsReader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B247FE53C7379FA74F4C944C /* Pods-RSSNewsReader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSSNewsReader.debug.xcconfig"; path = "Target Support Files/Pods-RSSNewsReader/Pods-RSSNewsReader.debug.xcconfig"; sourceTree = "<group>"; };
 		F4D9B2A6AFC4AD0942ECD3FC /* Pods-RSSNewsReader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSSNewsReader.release.xcconfig"; path = "Target Support Files/Pods-RSSNewsReader/Pods-RSSNewsReader.release.xcconfig"; sourceTree = "<group>"; };
@@ -88,7 +92,6 @@
 				30417717256FEAF800089A2B /* Assets.xcassets */,
 				30417719256FEAF800089A2B /* LaunchScreen.storyboard */,
 				3041771C256FEAF800089A2B /* Info.plist */,
-				30417714256FEAF400089A2B /* RSSNewsReader.xcdatamodeld */,
 			);
 			path = RSSNewsReader;
 			sourceTree = "<group>";
@@ -97,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				30417765257029F500089A2B /* Feed.swift */,
+				30417714256FEAF400089A2B /* RSSNewsReader.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -104,6 +108,7 @@
 		30417727256FFD9900089A2B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				304177772570521600089A2B /* FeedCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -121,6 +126,7 @@
 		30417729256FFDB400089A2B /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				3041776E2570366800089A2B /* Service.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -254,12 +260,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				304177352570088100089A2B /* SavedFeedsController.swift in Sources */,
+				3041776F2570366800089A2B /* Service.swift in Sources */,
 				30417710256FEAF400089A2B /* MainTabBarController.swift in Sources */,
 				3041770C256FEAF400089A2B /* AppDelegate.swift in Sources */,
 				30417766257029F500089A2B /* Feed.swift in Sources */,
 				30417716256FEAF400089A2B /* RSSNewsReader.xcdatamodeld in Sources */,
 				3041770E256FEAF400089A2B /* SceneDelegate.swift in Sources */,
 				304177322570085800089A2B /* FeedsListController.swift in Sources */,
+				304177782570521600089A2B /* FeedCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
