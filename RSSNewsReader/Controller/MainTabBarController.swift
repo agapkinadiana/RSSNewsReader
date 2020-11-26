@@ -11,8 +11,8 @@ class MainTabBarController: UITabBarController {
     
     //MARK: - Properties
     
-    private let newsListController = NewsListController()
-    private let savedNewsController = SavedNewsController()
+    private let newsListController = FeedsListController()
+    private let savedNewsController = SavedFeedsController()
     
     // MARK: - Lifecycle
     
