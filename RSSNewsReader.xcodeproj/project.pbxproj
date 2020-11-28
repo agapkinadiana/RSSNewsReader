@@ -17,6 +17,9 @@
 		3041776F2570366800089A2B /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3041776E2570366800089A2B /* Service.swift */; };
 		304177782570521600089A2B /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304177772570521600089A2B /* FeedCell.swift */; };
 		3041777D257069E800089A2B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3041777C257069E800089A2B /* Extensions.swift */; };
+		3041778A2573042800089A2B /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304177892573042800089A2B /* MainTabBarController.swift */; };
+		3041778D2573045400089A2B /* SavedFeedsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3041778C2573045400089A2B /* SavedFeedsController.swift */; };
+		3041779125730B2800089A2B /* FeedWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3041779025730B2800089A2B /* FeedWebViewController.swift */; };
 		A559E39255BEE25740D81906 /* Pods_RSSNewsReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E269161D972D2A39A1DD396 /* Pods_RSSNewsReader.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +36,9 @@
 		3041776E2570366800089A2B /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		304177772570521600089A2B /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		3041777C257069E800089A2B /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		304177892573042800089A2B /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		3041778C2573045400089A2B /* SavedFeedsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedFeedsController.swift; sourceTree = "<group>"; };
+		3041779025730B2800089A2B /* FeedWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedWebViewController.swift; sourceTree = "<group>"; };
 		6E269161D972D2A39A1DD396 /* Pods_RSSNewsReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RSSNewsReader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B247FE53C7379FA74F4C944C /* Pods-RSSNewsReader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSSNewsReader.debug.xcconfig"; path = "Target Support Files/Pods-RSSNewsReader/Pods-RSSNewsReader.debug.xcconfig"; sourceTree = "<group>"; };
 		F4D9B2A6AFC4AD0942ECD3FC /* Pods-RSSNewsReader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSSNewsReader.release.xcconfig"; path = "Target Support Files/Pods-RSSNewsReader/Pods-RSSNewsReader.release.xcconfig"; sourceTree = "<group>"; };
@@ -80,13 +86,13 @@
 		3041770A256FEAF400089A2B /* RSSNewsReader */ = {
 			isa = PBXGroup;
 			children = (
+				3041770B256FEAF400089A2B /* AppDelegate.swift */,
+				3041770D256FEAF400089A2B /* SceneDelegate.swift */,
 				30417726256FFD8900089A2B /* Model */,
 				30417727256FFD9900089A2B /* View */,
 				30417728256FFDA100089A2B /* Controller */,
 				30417729256FFDB400089A2B /* Service */,
 				3041772A256FFDBC00089A2B /* Utils */,
-				3041770B256FEAF400089A2B /* AppDelegate.swift */,
-				3041770D256FEAF400089A2B /* SceneDelegate.swift */,
 				30417717256FEAF800089A2B /* Assets.xcassets */,
 				30417719256FEAF800089A2B /* LaunchScreen.storyboard */,
 				3041771C256FEAF800089A2B /* Info.plist */,
@@ -114,7 +120,10 @@
 		30417728256FFDA100089A2B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				304177892573042800089A2B /* MainTabBarController.swift */,
 				304177312570085800089A2B /* FeedsListController.swift */,
+				3041778C2573045400089A2B /* SavedFeedsController.swift */,
+				3041779025730B2800089A2B /* FeedWebViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -257,7 +266,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3041776F2570366800089A2B /* Service.swift in Sources */,
+				3041779125730B2800089A2B /* FeedWebViewController.swift in Sources */,
 				3041770C256FEAF400089A2B /* AppDelegate.swift in Sources */,
+				3041778A2573042800089A2B /* MainTabBarController.swift in Sources */,
+				3041778D2573045400089A2B /* SavedFeedsController.swift in Sources */,
 				30417766257029F500089A2B /* Feed.swift in Sources */,
 				3041777D257069E800089A2B /* Extensions.swift in Sources */,
 				30417716256FEAF400089A2B /* RSSNewsReader.xcdatamodeld in Sources */,

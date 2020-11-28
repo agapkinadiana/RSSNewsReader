@@ -74,7 +74,7 @@ class FeedsListController: UIViewController {
         
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaLayoutGuide).inset(5)
+            make.edges.equalToSuperview()
         }
     }
     
@@ -102,6 +102,12 @@ extension FeedsListController: UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = FeedWebViewController()
+        vc.urlString = feeds[indexPath.row].link
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 // MARK: - FeedCellDelegate
@@ -112,6 +118,9 @@ extension FeedsListController: FeedCellDelegate {
         
         guard let indexPath = tableView.indexPath(for: cell) else  { return }
         feeds[indexPath.row].isSaved = !feeds[indexPath.row].isSaved
-        print(feeds[indexPath.row].isSaved)
+        
+        // TODO: Save to core data if not saved
+        
+        // TODO: Remove from db if saved
     }
 }
