@@ -54,6 +54,7 @@ class FeedsListController: UIViewController {
     }
     
     func configureUI() {
+        view.backgroundColor = .systemBackground
         configureNavigationBar()
         configureTableView()
     }
@@ -73,7 +74,7 @@ class FeedsListController: UIViewController {
         
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.edges.equalTo(view.safeAreaLayoutGuide).inset(5)
         }
     }
     
@@ -97,7 +98,7 @@ extension FeedsListController: UITableViewDelegate, UITableViewDataSource {
         
         cell.feed = feeds[indexPath.row]
         cell.delegate = self
-        cell.saveFeedButton.isEnabled = true
+        cell.saveFeedButton.isSelected = feeds[indexPath.row].isSaved
         
         return cell
     }
@@ -107,7 +108,10 @@ extension FeedsListController: UITableViewDelegate, UITableViewDataSource {
 
 extension FeedsListController: FeedCellDelegate {
     func addFeedToFeatured(cell: FeedCell) {
+        cell.saveFeedButton.isSelected = !cell.saveFeedButton.isSelected
+        
         guard let indexPath = tableView.indexPath(for: cell) else  { return }
-        feeds[indexPath.row].isSaved = true
+        feeds[indexPath.row].isSaved = !feeds[indexPath.row].isSaved
+        print(feeds[indexPath.row].isSaved)
     }
 }

@@ -50,7 +50,7 @@ class FeedCell: UITableViewCell {
     lazy var saveFeedButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "star_empty"), for: .normal)
-        button.setImage(UIImage(named: "star_filled"), for: .disabled)
+        button.setImage(UIImage(named: "star_filled"), for: .selected)
         button.addTarget(self, action: #selector(saveFeedTapped), for: .touchUpInside)
         return button
     }()
@@ -77,10 +77,8 @@ class FeedCell: UITableViewCell {
 
         addSubview(stack)
         stack.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(3)
-            make.bottom.equalTo(saveFeedButton.snp.top).offset(-5)
-            make.trailing.equalTo(saveFeedButton.snp.leading).offset(10)
-            make.leading.equalToSuperview().inset(15)
+            make.bottom.equalTo(saveFeedButton.snp.top).inset(-5)
+            make.top.leading.trailing.equalToSuperview().inset(16)
         }
     }
     
@@ -91,7 +89,6 @@ class FeedCell: UITableViewCell {
     // MARK: - Selectors
     
     @objc func saveFeedTapped() {
-        saveFeedButton.isEnabled = false
         self.delegate?.addFeedToFeatured(cell: self)
     }
 }
