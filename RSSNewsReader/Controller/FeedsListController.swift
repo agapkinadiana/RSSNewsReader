@@ -96,7 +96,18 @@ extension FeedsListController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! FeedCell
         
         cell.feed = feeds[indexPath.row]
+        cell.delegate = self
+        cell.saveFeedButton.isEnabled = true
         
         return cell
+    }
+}
+
+// MARK: - FeedCellDelegate
+
+extension FeedsListController: FeedCellDelegate {
+    func addFeedToFeatured(cell: FeedCell) {
+        guard let indexPath = tableView.indexPath(for: cell) else  { return }
+        feeds[indexPath.row].isSaved = true
     }
 }

@@ -23,14 +23,10 @@ struct Service {
                 }
                 
                 guard let data = dataResponse.data else { return }
-                
                 let obj = XML.parse(data)["rss"]
-                let channel = obj["channel"]
-                let items = channel["item"]
+                let items = obj["channel"]["item"]
                 let rssFeeds = Feed.parseRSSFeedItems(feeds: items)
-                
                 completion(.success(rssFeeds))
             }
     }
-    
 }

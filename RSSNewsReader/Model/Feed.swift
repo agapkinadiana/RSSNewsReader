@@ -9,12 +9,12 @@ import Foundation
 import SwiftyXMLParser
 
 struct Feed {
-    let id : String
+    let id: String
     let title: String
     var description: String
     let pubDate: String
     let link: String
-    let isSaved: Bool
+    var isSaved: Bool
 }
 
 // MARK: - Feed Parser
