@@ -13,8 +13,7 @@ struct Feed {
     let title: String
     var description: String
     let pubDate: String
-    let link: String
-    var isSaved: Bool
+    let link: String?
 }
 
 // MARK: - Feed Parser
@@ -26,7 +25,6 @@ extension Feed {
         description = feed["description"].text ?? ""
         pubDate = feed["pubDate"].text ?? ""
         link = feed["link"].text ?? ""
-        isSaved = false
     }
     
     static func parseRSSFeedItems(feeds: XML.Accessor) -> [Feed] {

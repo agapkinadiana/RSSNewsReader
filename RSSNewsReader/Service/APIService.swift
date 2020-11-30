@@ -14,8 +14,6 @@ struct APIService {
     static let shared = APIService()
     
     func fetchFeeds(completion: @escaping (AFResult<[Feed]>) -> ()) {
-        // TODO: set timer
-        
         AF.request(API_URL)
             .validate(statusCode: 200..<300)
             .responseData { (dataResponse) in

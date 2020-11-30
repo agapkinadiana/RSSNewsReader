@@ -36,7 +36,7 @@ class FeedCell: UITableViewCell {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16)
         label.textColor = .gray
-        label.numberOfLines = 4
+        label.numberOfLines = 5
         return label
     }()
     

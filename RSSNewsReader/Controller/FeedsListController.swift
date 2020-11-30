@@ -60,8 +60,8 @@ class FeedsListController: UIViewController {
     }
     
     func configureNavigationBar() {
-        navigationController?.navigationBar.topItem?.title = "News"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Favourites", style: .plain, target: self, action: #selector(goToSavedFeedsTapped))
+        self.navigationItem.title = "News"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Favorites", style: .plain, target: self, action: #selector(goToSavedFeedsTapped))
     }
     
     func configureTableView() {
