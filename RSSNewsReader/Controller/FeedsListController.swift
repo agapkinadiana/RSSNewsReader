@@ -36,12 +36,17 @@ class FeedsListController: UIViewController {
         APIService.shared.fetchFeeds { (feeds) in
             switch feeds {
             case .failure(let err):
-                print("DEBUG: Error fetching news: \(err)")
+                self.showErrorAlert(message: "Error fetching news \(err.localizedDescription)")
             case .success(let feeds):
                 self.feeds = feeds
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
+            case nil:
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+                self.showErrorAlert(message: "Turn on the Internet to update the news.")
             }
         }
     }
@@ -77,6 +82,11 @@ class FeedsListController: UIViewController {
         tableView.snp.makeConstraints {
             $0.edges.equalTo(view.safeAreaLayoutGuide)
         }
+    }
+    
+    func showErrorAlert(message: String) {
+        let alert = AlertGenerate.alert(title: "Error ⚠️", message: message, controller: self, buttons: nil, completion: nil)
+        present(alert, animated: true, completion: nil)
     }
     
     // MARK: - Selectors

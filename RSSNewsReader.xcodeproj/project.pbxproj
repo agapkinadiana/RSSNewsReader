@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3036D0F925759D6F00380023 /* AlertGenerate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3036D0F825759D6F00380023 /* AlertGenerate.swift */; };
 		3041770C256FEAF400089A2B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3041770B256FEAF400089A2B /* AppDelegate.swift */; };
 		3041770E256FEAF400089A2B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3041770D256FEAF400089A2B /* SceneDelegate.swift */; };
 		30417716256FEAF400089A2B /* FeedEntity.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 30417714256FEAF400089A2B /* FeedEntity.xcdatamodeld */; };
@@ -21,10 +22,12 @@
 		3041779125730B2800089A2B /* FeedWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3041779025730B2800089A2B /* FeedWebViewController.swift */; };
 		304177952573C30000089A2B /* SplashController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304177942573C30000089A2B /* SplashController.swift */; };
 		3041779A25743C2900089A2B /* DBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3041779925743C2900089A2B /* DBService.swift */; };
+		30C363A42575976D008B06A6 /* NetworkConnectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C363A32575976D008B06A6 /* NetworkConnectivity.swift */; };
 		A559E39255BEE25740D81906 /* Pods_RSSNewsReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E269161D972D2A39A1DD396 /* Pods_RSSNewsReader.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3036D0F825759D6F00380023 /* AlertGenerate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertGenerate.swift; sourceTree = "<group>"; };
 		30417708256FEAF400089A2B /* RSSNewsReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSSNewsReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3041770B256FEAF400089A2B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3041770D256FEAF400089A2B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -41,6 +44,7 @@
 		3041779025730B2800089A2B /* FeedWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedWebViewController.swift; sourceTree = "<group>"; };
 		304177942573C30000089A2B /* SplashController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashController.swift; sourceTree = "<group>"; };
 		3041779925743C2900089A2B /* DBService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBService.swift; sourceTree = "<group>"; };
+		30C363A32575976D008B06A6 /* NetworkConnectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConnectivity.swift; sourceTree = "<group>"; };
 		6E269161D972D2A39A1DD396 /* Pods_RSSNewsReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RSSNewsReader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B247FE53C7379FA74F4C944C /* Pods-RSSNewsReader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSSNewsReader.debug.xcconfig"; path = "Target Support Files/Pods-RSSNewsReader/Pods-RSSNewsReader.debug.xcconfig"; sourceTree = "<group>"; };
 		F4D9B2A6AFC4AD0942ECD3FC /* Pods-RSSNewsReader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSSNewsReader.release.xcconfig"; path = "Target Support Files/Pods-RSSNewsReader/Pods-RSSNewsReader.release.xcconfig"; sourceTree = "<group>"; };
@@ -94,6 +98,7 @@
 				30417727256FFD9900089A2B /* View */,
 				30417728256FFDA100089A2B /* Controller */,
 				30417729256FFDB400089A2B /* Service */,
+				30C363A625759779008B06A6 /* Components */,
 				3041772A256FFDBC00089A2B /* Utils */,
 				30417717256FEAF800089A2B /* Assets.xcassets */,
 				30417719256FEAF800089A2B /* LaunchScreen.storyboard */,
@@ -143,8 +148,17 @@
 			isa = PBXGroup;
 			children = (
 				3041777C257069E800089A2B /* Extensions.swift */,
+				3036D0F825759D6F00380023 /* AlertGenerate.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		30C363A625759779008B06A6 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				30C363A32575976D008B06A6 /* NetworkConnectivity.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		F43C9E7D8E777E87EB0559E8 /* Frameworks */ = {
@@ -274,12 +288,14 @@
 				3041778D2573045400089A2B /* SavedFeedsController.swift in Sources */,
 				30417766257029F500089A2B /* Feed.swift in Sources */,
 				3041777D257069E800089A2B /* Extensions.swift in Sources */,
+				30C363A42575976D008B06A6 /* NetworkConnectivity.swift in Sources */,
 				30417716256FEAF400089A2B /* FeedEntity.xcdatamodeld in Sources */,
 				304177952573C30000089A2B /* SplashController.swift in Sources */,
 				3041779A25743C2900089A2B /* DBService.swift in Sources */,
 				3041770E256FEAF400089A2B /* SceneDelegate.swift in Sources */,
 				304177322570085800089A2B /* FeedsListController.swift in Sources */,
 				304177782570521600089A2B /* FeedCell.swift in Sources */,
+				3036D0F925759D6F00380023 /* AlertGenerate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
