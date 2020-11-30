@@ -1,5 +1,5 @@
 //
-//  Service.swift
+//  APIService.swift
 //  RSSNewsReader
 //
 //  Created by Diana Agapkina on 26.11.20.
@@ -10,10 +10,12 @@ import SwiftyXMLParser
 
 let API_URL = "https://alfabank.ru/_/rss/_rss.html?subtype=1&category=2&city=21"
 
-struct Service {
-    static let shared = Service()
+struct APIService {
+    static let shared = APIService()
     
     func fetchFeeds(completion: @escaping (AFResult<[Feed]>) -> ()) {
+        // TODO: set timer
+        
         AF.request(API_URL)
             .validate(statusCode: 200..<300)
             .responseData { (dataResponse) in

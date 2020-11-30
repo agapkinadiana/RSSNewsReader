@@ -33,7 +33,7 @@ class FeedsListController: UIViewController {
     // MARK: - API
     
     func fetchFeeds() {
-        Service.shared.fetchFeeds { (feeds) in
+        APIService.shared.fetchFeeds { (feeds) in
             switch feeds {
             case .failure(let err):
                 print("DEBUG: Error fetching news: \(err)")
@@ -61,6 +61,7 @@ class FeedsListController: UIViewController {
     
     func configureNavigationBar() {
         navigationController?.navigationBar.topItem?.title = "News"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Favourites", style: .plain, target: self, action: #selector(goToSavedFeedsTapped))
     }
     
     func configureTableView() {
@@ -73,8 +74,8 @@ class FeedsListController: UIViewController {
         tableView.tableFooterView = UIView()
         
         view.addSubview(tableView)
-        tableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+        tableView.snp.makeConstraints {
+            $0.edges.equalTo(view.safeAreaLayoutGuide)
         }
     }
     
@@ -83,6 +84,10 @@ class FeedsListController: UIViewController {
     @objc private func refresh(sender: UIRefreshControl) {
         fetchFeeds()
         sender.endRefreshing()
+    }
+    
+    @objc private func goToSavedFeedsTapped() {
+        navigationController?.pushViewController(SavedFeedsController(), animated: true)
     }
 }
 
@@ -95,11 +100,7 @@ extension FeedsListController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! FeedCell
-        
         cell.feed = feeds[indexPath.row]
-        cell.delegate = self
-        cell.saveFeedButton.isSelected = feeds[indexPath.row].isSaved
-        
         return cell
     }
     
@@ -108,19 +109,16 @@ extension FeedsListController: UITableViewDelegate, UITableViewDataSource {
         vc.urlString = feeds[indexPath.row].link
         navigationController?.pushViewController(vc, animated: true)
     }
-}
-
-// MARK: - FeedCellDelegate
-
-extension FeedsListController: FeedCellDelegate {
-    func addFeedToFeatured(cell: FeedCell) {
-        cell.saveFeedButton.isSelected = !cell.saveFeedButton.isSelected
-        
-        guard let indexPath = tableView.indexPath(for: cell) else  { return }
-        feeds[indexPath.row].isSaved = !feeds[indexPath.row].isSaved
-        
-        // TODO: Save to core data if not saved
-        
-        // TODO: Remove from db if saved
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let action = UIContextualAction(style: .normal, title: "Favorite") { (action, view, completionHandler) in
+            DBService.shared.saveCurrentFeed(item: self.feeds[indexPath.row])
+            completionHandler(true)
+        }
+        action.image = UIImage(systemName: "star.fill")
+        action.backgroundColor = .systemGreen
+        let configuration = UISwipeActionsConfiguration(actions: [action])
+        configuration.performsFirstActionWithFullSwipe = false
+        return configuration
     }
 }

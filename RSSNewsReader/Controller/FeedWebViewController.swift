@@ -27,8 +27,8 @@ class FeedWebViewController: UIViewController {
     
     func configureUI() {
         view.addSubview(webView)
-        webView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+        webView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
     }
     
