@@ -14,8 +14,8 @@ class FeedsListController: UIViewController {
     
     //MARK: - Properties
     
-    private let tableView = UITableView()
-    private var feeds = [Feed]()
+    var tableView = UITableView()
+    var feeds = [Feed]()
     
     private let newsRefreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -55,7 +55,7 @@ class FeedsListController: UIViewController {
     
     func configure() {
         configureUI()
-        fetchFeeds()
+//        fetchFeeds()
     }
     
     func configureUI() {
@@ -66,6 +66,7 @@ class FeedsListController: UIViewController {
     
     func configureNavigationBar() {
         self.navigationItem.title = "News"
+        navigationItem.hidesBackButton = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Favorites", style: .plain, target: self, action: #selector(goToSavedFeedsTapped))
     }
     
@@ -80,7 +81,7 @@ class FeedsListController: UIViewController {
         
         view.addSubview(tableView)
         tableView.snp.makeConstraints {
-            $0.edges.equalTo(view.safeAreaLayoutGuide)
+            $0.edges.equalToSuperview()
         }
     }
     
@@ -116,7 +117,8 @@ extension FeedsListController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = FeedWebViewController()
-        vc.urlString = feeds[indexPath.row].link
+        vc.feeds = feeds
+        vc.currentIndex = indexPath.row
         navigationController?.pushViewController(vc, animated: true)
     }
     

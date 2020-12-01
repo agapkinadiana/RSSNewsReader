@@ -7,20 +7,23 @@
 
 import UIKit
 import WebKit
+import Alamofire
 
-class FeedWebViewController: UIViewController {
+class FeedWebViewController: UIPageViewController {
     
     //MARK: - Properties
     
     private let webView = WKWebView()
-    var urlString: String?
+    var feeds = [Feed]()
+    var currentIndex = Int()
     
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        loadURL(urlString)
+        configureGestureRecognizers()
+        loadPage(for: currentIndex)
     }
     
     // MARK: - Helper Functions
@@ -32,11 +35,39 @@ class FeedWebViewController: UIViewController {
         }
     }
     
-    func loadURL(_ urlString: String?) {
-        guard let urlString = urlString else { return }
-        if let url = URL(string: urlString) {
-            let request = URLRequest(url: url)
-            webView.load(request)
+    func configureGestureRecognizers() {
+        let leftRecognizer = UISwipeGestureRecognizer(target: self, action:
+                                                        #selector(swipeMade(_:)))
+        leftRecognizer.direction = .left
+        let rightRecognizer = UISwipeGestureRecognizer(target: self, action:
+                                                        #selector(swipeMade(_:)))
+        rightRecognizer.direction = .right
+        self.view.addGestureRecognizer(leftRecognizer)
+        self.view.addGestureRecognizer(rightRecognizer)
+    }
+    
+    func loadPage(for index: Int) {
+        let link = feeds[index].link
+        webView.loadURL(link)
+    }
+    
+    // MARK: - Selectors
+    
+    @objc func swipeMade(_ sender: UISwipeGestureRecognizer) {
+        if sender.direction == .left {
+            print("DEBUG: left swipe made")
+            currentIndex += 1
+            if currentIndex == feeds.count {
+                currentIndex = 0
+            }
         }
+        if sender.direction == .right {
+            print("DEBUG: right swipe made")
+            if currentIndex == 0 {
+                currentIndex = feeds.count
+            }
+            currentIndex -= 1
+        }
+        loadPage(for: currentIndex)
     }
 }

@@ -57,8 +57,14 @@ class SavedFeedsController: UIViewController {
         
         view.addSubview(tableView)
         tableView.snp.makeConstraints {
-            $0.edges.equalTo(view.safeAreaLayoutGuide)
+            $0.edges.equalToSuperview()
         }
+    }
+    
+    func deleteFeed(at indexPath: IndexPath, in tableView: UITableView) {
+        DBService.shared.deleteSelectedFeed(feedId: self.feeds[indexPath.row].id)
+        self.feeds.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .fade)
     }
 }
 
@@ -81,9 +87,7 @@ extension SavedFeedsController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let action = UIContextualAction(style: .normal, title: "Unfavorite") { (action, view, completionHandler) in
-            DBService.shared.deleteSelectedFeed(feedId: self.feeds[indexPath.row].id)
-            self.feeds.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            self.deleteFeed(at: indexPath, in: tableView)
             completionHandler(true)
         }
         action.image = UIImage(systemName: "star.fill")

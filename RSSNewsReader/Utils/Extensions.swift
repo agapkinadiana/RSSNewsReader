@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import WebKit
 
 extension String {
     func removeHtmlTags() -> String {
@@ -30,5 +31,16 @@ extension String {
         dateFormatter.dateFormat = "MMM dd, HH:mm"
         let dateFormatted = dateFormatter.string(from: date)
         return dateFormatted
+    }
+}
+
+extension WKWebView {
+    func loadURL(_ urlString: String?) {
+        guard let urlString = urlString else { return }
+        
+        if let url = URL(string: urlString) {
+            let request = URLRequest(url: url)
+            load(request)
+        }
     }
 }
