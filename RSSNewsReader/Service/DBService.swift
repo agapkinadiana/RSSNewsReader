@@ -82,9 +82,10 @@ class DBService {
                     guard let id = feed.id,
                           let title = feed.title,
                           let pubDate = feed.pubDate,
-                          let desc = feed.desc
+                          let desc = feed.desc,
+                          let link = feed.id
                     else { return rssFeeds }
-                    rssFeeds.append(Feed(id: id, title: title, description: desc, pubDate: pubDate, link: nil))
+                    rssFeeds.append(Feed(id: id, title: title, description: desc, pubDate: pubDate, link: link))
                 }
             }
         } catch {

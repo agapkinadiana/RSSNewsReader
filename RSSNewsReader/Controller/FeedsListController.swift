@@ -13,21 +13,31 @@ private let reuseIdentifier = "FeedCell"
 class FeedsListController: UIViewController {
     
     //MARK: - Properties
-    
+
     var tableView = UITableView()
-    var feeds = [Feed]()
+    var feeds = [Feed]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
     
     private let newsRefreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
         return refreshControl
     }()
-
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configure()
+        configureUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setupObservers()
     }
     
     // MARK: - API
@@ -39,24 +49,16 @@ class FeedsListController: UIViewController {
                 self.showErrorAlert(message: "Error fetching news \(err.localizedDescription)")
             case .success(let feeds):
                 self.feeds = feeds
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
             case nil:
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
                 self.showErrorAlert(message: "Turn on the Internet to update the news.")
+            }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
             }
         }
     }
     
     // MARK: - Helper Functions
-    
-    func configure() {
-        configureUI()
-//        fetchFeeds()
-    }
     
     func configureUI() {
         view.backgroundColor = .systemBackground
@@ -73,7 +75,7 @@ class FeedsListController: UIViewController {
     func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        
+
         tableView.register(FeedCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.refreshControl = newsRefreshControl
         tableView.showsVerticalScrollIndicator = false
@@ -90,6 +92,10 @@ class FeedsListController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    func setupObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(onNotification(notification:)), name: .OnFeedUpdated, object: nil)
+    }
+    
     // MARK: - Selectors
 
     @objc private func refresh(sender: UIRefreshControl) {
@@ -99,6 +105,12 @@ class FeedsListController: UIViewController {
     
     @objc private func goToSavedFeedsTapped() {
         navigationController?.pushViewController(SavedFeedsController(), animated: true)
+    }
+    
+    @objc func onNotification(notification:Notification)
+    {
+        guard let dictionary = notification.userInfo else { return }
+        feeds = dictionary["feeds"] as? [Feed] ?? []
     }
 }
 

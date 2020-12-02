@@ -44,3 +44,7 @@ extension WKWebView {
         }
     }
 }
+
+extension Notification.Name {
+    static let OnFeedUpdated = Notification.Name("OnFeedUpdated")
+}

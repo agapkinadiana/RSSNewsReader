@@ -11,13 +11,13 @@ class SplashController: UIViewController {
     
     // MARK: - Properties
     
-    //private var feeds: [Feed]? = nil
     var timer: Timer?
-    private var feeds = [Feed]()
+    var isRunning: Bool = false
+    private var feeds = [Feed]() 
     
     var timerValue: CGFloat = 15.0
     lazy var count = self.timerValue
-    
+        
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -30,13 +30,14 @@ class SplashController: UIViewController {
         APIService.shared.fetchFeeds { (feeds) in
             switch feeds {
             case .failure(let err):
-                self.showErrorAlert(message: "Error fetching news \(err.localizedDescription)")
+                print("Error fetching news \(err.localizedDescription)")
             case .success(let feeds):
-                print("DEBUG: Success")
                 self.feeds = feeds
             case nil:
                 self.feeds = []
-                self.showErrorAlert(message: "Turn on the Internet to update the news.")
+            }
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(name: .OnFeedUpdated, object: nil, userInfo: ["feeds": self.feeds])
             }
         }
     }
@@ -46,20 +47,19 @@ class SplashController: UIViewController {
     func configure() {
         view.backgroundColor = .systemBackground
         setupObservers()
-        setupTimer()
-//        fetchFeeds()
-//        navigateToFeedsList()
+        if isRunning == false {
+            fetchFeeds()
+            setupTimer()
+            navigateToFeedsList()
+            isRunning = true
+        }
     }
     
     func navigateToFeedsList() {
         let vc = FeedsListController()
-        vc.feeds = feeds
-        self.navigationController?.pushViewController(vc, animated: false)
-    }
-    
-    func showErrorAlert(message: String) {
-        let alert = AlertGenerate.alert(title: "Error ⚠️", message: message, controller: self, buttons: nil, completion: nil)
-        present(alert, animated: true, completion: nil)
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        self.present(navVC, animated: true, completion: nil)
     }
     
     // MARK: - Selectors
@@ -67,7 +67,6 @@ class SplashController: UIViewController {
     @objc func handleTimer() {
         print("DEBUG: \(count)")
         if count <= 0 {
-            print("DEBUG: end \(count)")
             fetchFeeds()
             resetTimer()
         } else {
@@ -79,7 +78,6 @@ class SplashController: UIViewController {
 // MARK: - Timer Control
 
 extension SplashController {
-    
     func setupObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(pauseWhenBackground(noti:)), name: UIApplication.didEnterBackgroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground(noti:)), name: UIApplication.willEnterForegroundNotification, object: nil)

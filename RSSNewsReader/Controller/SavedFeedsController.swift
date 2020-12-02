@@ -44,7 +44,7 @@ class SavedFeedsController: UIViewController {
     }
     
     func configureNavigationBar() {
-        self.navigationItem.title = "Favorites news"
+        self.navigationItem.title = "Favorite news"
     }
     
     func configureTableView() {
@@ -82,7 +82,10 @@ extension SavedFeedsController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO: load cached page to WebView
+        let vc = FeedWebViewController()
+        vc.feeds = feeds
+        vc.currentIndex = indexPath.row
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
