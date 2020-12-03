@@ -17,7 +17,6 @@ extension String {
             .replacingOccurrences(of: "&laquo;", with: "«")
             .replacingOccurrences(of: "&raquo;", with: "»")
             .replacingOccurrences(of: "&mdash;", with: "—")
-            //.replacingOccurrences(of: "&[^;]+;", with: "", options: .regularExpression, range: nil)
     }
 
     func trim() -> String {

@@ -7,15 +7,10 @@
 
 import UIKit
 
-protocol FeedCellDelegate: class {
-    func addFeedToFeatured(cell: FeedCell)
-}
-
 class FeedCell: UITableViewCell {
 
     // MARK: - Properties
-    weak var delegate: FeedCellDelegate?
-    
+
     var feed: Feed? {
         didSet {
             titleLabel.text = feed?.title

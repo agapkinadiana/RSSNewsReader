@@ -13,7 +13,7 @@ struct Feed {
     let title: String
     var description: String
     let pubDate: String
-    let link: String?
+    let link: String
 }
 
 // MARK: - Feed Parser

@@ -15,7 +15,7 @@ class SplashController: UIViewController {
     var isRunning: Bool = false
     private var feeds = [Feed]() 
     
-    var timerValue: CGFloat = 15.0
+    var timerValue: CGFloat = 350.0
     lazy var count = self.timerValue
         
     // MARK: - Lifecycle
@@ -65,7 +65,6 @@ class SplashController: UIViewController {
     // MARK: - Selectors
     
     @objc func handleTimer() {
-        print("DEBUG: \(count)")
         if count <= 0 {
             fetchFeeds()
             resetTimer()
